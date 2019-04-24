@@ -15,7 +15,7 @@ app.use("/shelterList", require('./routes/shelterRoutes.js'))
 
 //database connection
 mongoose.connect(process.env.MONGO_URI || "mongodb: //localhost:27017/shelter-db", {useNewUrlParser: true}, () => {
-    console.log('connected to the database')
+    console.log('[ o ] connected to the database')
 })
 
 //global error handler
@@ -24,8 +24,8 @@ app.use((err, req, res, next) => {
     res.send({errMsg: err.message})
 })
 
-app.get("*", (req, res, next) => {
-    res.sendFile(path.join(_dirname, "client", "build", "index.html"))
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"))
 } )
 
 //server setup 
